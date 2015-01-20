@@ -1,0 +1,16 @@
+1: Pairs(对组),对于返回值必须为两个数的情况，可以使用Pairs
+	头文件：<utility>:
+	两个pairs比较的时候，第一个元素的优先级>第二个函数的优先级
+	便捷函数std::make_pair()取代std::pair<int,char>(42,'@')
+2: 智能指针的使用
+	std::auto_ptr<ClassA> ptr(new ClassA);
+   支持，*,->,必须使用数值来完成初始化，而不能使用赋值(assign)
+   std::auto_ptr<ClassA> ptr1(new ClassA); //ok
+   std::auto_ptr<ClassA> ptr2(new ClassA); //ok
+   ptr1 = ptr2; //这个时候，ptr2会两手空空，且ptr1丢掉之前有的，加上现在有的
+   可以使用const来终止auto控制权的转移；
+	const std::auto_ptr<int> p(new int);
+3: 数值极限(Numerric Limits),这里的数值极限就是规定了变量类型的边界;
+4：辅助函数min,max,swap,以及特殊的rel_ops名称空间，不过对于最后一个函数自己定义操作符比较好
+   他不是c++标准库所支持的
+5：头文件<cstdlib> 和 <cstddef>的各种定义
