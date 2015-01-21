@@ -1,0 +1,64 @@
+Sets 和Multisets的不同地方在于，Sets不应许元素重复，而Multisets应许元素重复
+使用的时候，必须引入头文件<set>，而且在加入的时候，都按照默认的 ‘<’方式来进行排序的
+
+sets和multisets是基于红黑树或则说是平衡二叉树来的
+因此呢，在进行元素替换的时候，必须先进行元素的删除，然后再进行元素的插入，否则就会影响元素的有序性
+●sets和multisets不提供用来直接存取元素的任何操作函数
+●通过迭代器进行元素间接存取，有一个限制，从迭代器的角度来看，元素值是一个常数
+
+Sets和Multisets的操作函数
+生成，复制，销毁
+set c 产生一个空的set/multiset，其中不含任何元素
+set c(op) 以op为排序准则，产生一个空的set/multiset
+set c1(c2) 产生一个副本
+set c(beg,end) 产生特定区间的一个set
+set c(beg,end,op) 以op为准则
+c.~set() 销毁所有的元素，释放内存
+
+//set的形式
+set<Elem> 一个set,以less<>(operator<) 为排序准则
+set<Elem,op> 一个set，以op为排序准则
+multiset<Elem> 一个multiset，以less<>(operator<)为排序准则
+multiset<Elem,Op> 一个Multiset，以op为排序准则
+
+//非变动性操作
+c.size()
+c.empty()
+c.max_size()
+c1 == c2
+c1 != c2
+c1 < c2
+c1 > c2
+c1 <= c2
+c1 >= c2
+
+//搜寻操作函数
+count(Elem) 返回元素值为true的元素个数
+find(elem) 返回元素值为elem的第一个元素，如果找不到就返回end()
+lower_bound(elem)  返回‘元素值>=elem’的第一个元素位置
+upper_bound(elem)  返回elem的最后一个可安插的位置,也就是'元素值>elem'的第一个位置
+equal_range(elem)  返回elem可安插的第一个位置和最后一个位置，也就是元素值 == elem 的元素区间
+
+//赋值操作
+c1 = c2
+c1.swap(c2)
+swap(c1,c2)
+
+//迭代器相关函数
+c.begin()
+c.end()
+c.rbegin()
+c.rend()
+
+//元素的插入和删除
+c.insert(elem) 插入元素elem，返回心元素的位置
+c.insert(pos,elem) 安插一份elem副本,以pos位置开始搜索
+c.insert(beg,end) 插入整个区间
+c.erase(elem) 移除所有的与elem相等的元素,返回移除的元素的个数
+c.erase(pos) 移除迭代器pos所指位置上的元素,无返回值
+c.erase(beg,end) 移除区间[beg,end]内的所有元素，无返回值
+c.clear() 移除全部元素，将整个容器清空
+
+set的返回值类型是以pair组织起来的两个值
+●pair结构中的second成员表示安插是否成功
+●pair结构中的first成员返回新元素的位置，或则返回现存的同值元素的位置
